@@ -1,0 +1,38 @@
+<!-- Embeded skin for CheckPyCode plugin  -->
+<!-- created by Vasiliks 12.2024  -->
+
+<skin>
+  <screen name="CheckPyCode" position="40*f,60*f" size="1200*f,640*f" >
+    <eLabel backgroundColor="#c0c0c0" position="416*f,10*f" size="2*f,584*f" />
+    <eLabel backgroundColor="#c0c0c0" position="416*f,70*f" size="840*f,2*f" />
+    <eLabel backgroundColor="#c0c0c0" position="10*f,594*f" size="1180*f,2*f" />
+    <widget name="filelist" position="12*f,12*f" size="390*f,580*f" font="Regular;18*f" zPosition="1" backgroundColor="background" scrollbarMode="showOnDemand" transparent="1" />
+    <widget name="filetocheck" position="440*f,16*f" size="830*f,22*f" font="Console;16*f" foregroundColor="green" />
+    <widget name="infopyfile" position="440*f,42*f" size="430*f,22*f" font="Console;16*f" foregroundColor="green" />
+    <widget name="checkinfo" position="440*f,76*f" size="830*f,510*f" font="Console;16*f"  transparent="1" />
+    <widget name="full_ver" position="20*f,606*f" size="640*f,24*f" font="Regular;20*f" foregroundColor="#58D68D" backgroundColor="#111111" transparent="1" split="1" dividechar="?" colposition="0" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/CheckPyCode/images/key_ok.png" position="1030*f,604*f" size="36*f,26*f" alphatest="on" scale="on" transparent="1" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/CheckPyCode/images/key_menu.png" position="1090*f,604*f" size="36*f,26*f" alphatest="on" scale="on" transparent="1" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/CheckPyCode/images/key_info.png" position="1150*f,604*f" size="36*f,26*f" alphatest="on" scale="on" transparent="1" />
+  </screen> 
+           
+  <screen name="Detailed" position="40*f,60*f" size="1200*f,640*f" >
+    <eLabel backgroundColor="#c0c0c0" position="10*f,10*f" size="1180*f,2*f" />
+    <!--eLabel backgroundColor="#c0c0c0" position="10*f,630*f" size="1182*f,2*f" /-->
+    <eLabel backgroundColor="#c0c0c0" position="10*f,10*f" size="2*f,584*f" />
+    <eLabel backgroundColor="#c0c0c0" position="1190*f,10*f" size="2*f,584*f" />
+    <eLabel backgroundColor="#c0c0c0" position="10*f,594*f" size="1182*f,2*f" />
+    <widget name="checkinfo" position="20*f,20*f" size="1230*f,574*f" font="Console;16*f" zPosition="2" transparent="0" scrollbarWidth="4*f" />
+    <widget source="key_red" render="Label" position="1100*f,606*f" size="84*f,33*f" font="Regular;20*f" transparent="1" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/CheckPyCode/images/key_red.png" position="1060*f,606*f" size="24*f,24*f" alphatest="on" scale="on" transparent="1" />
+    <widget name="full_ver" position="20*f,606*f" size="640*f,24*f" font="Regular;20*f" foregroundColor="#58D68D" backgroundColor="#111111" transparent="1" split="1" dividechar="?" colposition="0" />
+  </screen>
+ 
+  <screen name="CheckPyCodeConf" position="center,center" size="600*f,220*f" >
+    <widget name="config" position="10*f,10*f" size="580*f,120*f" itemHeight="24*f" font="Regular;18*f" scale="on" scrollbarMode="showOnDemand" transparent="1" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/CheckPyCode/images/key_red.png" position="20*f,180*f" size="24*f,24*f" alphatest="on" scale="on" transparent="1" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/CheckPyCode/images/key_green.png" position="270*f,180*f" size="24*f,24*f" alphatest="on" scale="on" transparent="1" />
+    <widget name="key_red" position="60*f,180*f" size="200*f,26*f" font="Regular;18*f" halign="left" transparent="1" valign="center" zPosition="2" />
+    <widget name="key_green" position="310*f,180*f" size="200*f,26*f" font="Regular;18*f" halign="left" transparent="1" valign="center" zPosition="2" />
+  </screen> 
+</skin>
