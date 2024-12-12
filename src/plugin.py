@@ -18,7 +18,7 @@ import Plugins.Extensions.CheckPyCode.pycodestyle as pcstyle
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 
-plugin_version = '1.0'
+PV = '1.0'
 config.plugins.checkpycode = ConfigSubsection()
 config.plugins.checkpycode.current_path = ConfigText(default="/", visible_width=70, fixed_size=False)
 config.plugins.checkpycode.remember_last_path = ConfigYesNo(default=False)
@@ -60,7 +60,7 @@ class CheckPyCode(Screen):
         Screen.__init__(self, session)
         self.skin = getSkin("CheckPyCode")
         self.session = session
-        self.setTitle(_('Plugin CheckPyCode ver.' + plugin_version))
+        self.setTitle(_('Plugin CheckPyCode ver.' + PV))
         current_path = config.plugins.checkpycode.current_path.value
         hide = ['/dev', '/dev.static', '/ram', '/proc', '/sys', '/home', '/run']
         self['filelist'] = FileList(current_path, matchingPattern=r"^.*\.(py)",
@@ -196,7 +196,7 @@ class CheckPyCode(Screen):
         self.session.open(
             MessageBox,
             _('Tool to check your Python code \nEnigma2 plugin ver.%s\n©2024 Vasiliks') %
-            plugin_version,
+            PV,
             MessageBox.TYPE_INFO,
             simple=True)
 
@@ -268,6 +268,6 @@ def main(session, **kwargs):
 
 def Plugins(path, **kwargs):
     return PluginDescriptor(name=_('CheckPyCode'),
-                            description=_('Tool to check your Python code ver.' + plugin_version),
+                            description=_('Tool to check your Python code ver.' + PV),
                             icon='checkpycode.png',
                             where=PluginDescriptor.WHERE_PLUGINMENU, fnc=main)
