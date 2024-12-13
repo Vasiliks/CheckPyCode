@@ -1,0 +1,44 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CheckPyCode\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2024-12-13 08:17+0100\n"
+"Last-Translator: Vasiliks\n"
+"Language-Team: \n"
+"Language: ru\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 3.4.1\n"
+
+msgid "Plugin CheckPyCode ver."
+msgstr "Плагин CheckPyCode вер."
+
+msgid "No data"
+msgstr "Нет данных"
+
+msgid "Please wait!"
+msgstr "Пожалуйста подождите!"
+
+msgid "\tProcessing speed:\n"
+msgstr "\tСкорость обработки:\n"
+
+msgid "\tStatistics errors and warnings:\n"
+msgstr "\tСтатистика ошибок и предупреждений:\n"
+
+msgid ""
+"Tool to check your Python code \n"
+"Enigma2 plugin ver.%s\n"
+"©2024 Vasiliks"
+msgstr ""
+"Утилита для проверки кода Python \n"
+"Enigma2 плагин вер.%s\n"
+"©2024 Vasiliks"
+
+msgid "\tDetailed Information"
+msgstr "\tДетальная Информация"
+
+msgid "Tool to check your Python code ver."
+msgstr "Утилита для проверки кода Python вер."

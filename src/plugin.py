@@ -6,7 +6,7 @@ import sys
 import os
 import re
 import time
-from . import _, getSkin,  ScreenWidth
+from . import _, getSkin
 from Components.ActionMap import ActionMap
 from Components.config import config, ConfigText, ConfigSubsection, getConfigListEntry, ConfigYesNo, ConfigInteger
 from Components.ConfigList import ConfigListScreen
@@ -60,7 +60,7 @@ class CheckPyCode(Screen):
         Screen.__init__(self, session)
         self.skin = getSkin("CheckPyCode")
         self.session = session
-        self.setTitle(_('Plugin CheckPyCode ver.' + PV))
+        self.setTitle(_('Plugin CheckPyCode ver.') + PV)
         current_path = config.plugins.checkpycode.current_path.value
         hide = ['/dev', '/dev.static', '/ram', '/proc', '/sys', '/home', '/run']
         self['filelist'] = FileList(current_path, matchingPattern=r"^.*\.(py)",
@@ -107,7 +107,7 @@ class CheckPyCode(Screen):
     def cross(self):
         self.check = True
         if self['filelist'].canDescent():
-            self['checkinfo'].setText('No data')
+            self['checkinfo'].setText(_('No data'))
             self['filetocheck'].setText(self['filelist'].getCurrentDirectory())
             self['infopyfile'].setText(' ')
         else:
@@ -126,13 +126,13 @@ class CheckPyCode(Screen):
         if self.check:
             if self['filelist'].canDescent():
                 self['filelist'].descent()
-                self['checkinfo'].setText('No data')
+                self['checkinfo'].setText(_('No data'))
                 self['filetocheck'].setText(self['filelist'].getCurrentDirectory())
                 self['infopyfile'].setText(' ')
             else:
                 file_to_check = self['filelist'].getFilename()
                 path = '{}{}'.format(self['filelist'].getCurrentDirectory(), file_to_check)
-                self['checkinfo'].setText('Please wait!')
+                self['checkinfo'].setText(_('Please wait!'))
                 self['filetocheck'].setText(path)
                 self['infopyfile'].setText(info_py_file(path))
 
@@ -150,14 +150,14 @@ class CheckPyCode(Screen):
         style_guide = pcstyle.StyleGuide(kwargs)
         result = style_guide.check_files([file_path])
         errors = ""
-        errors += '\tProcessing speed:\n'
+        errors += _('\tProcessing speed:\n')
         if result.elapsed:
             for key in result._benchmark_keys:
                 errors += ('%-7d %s per second (%d total)' % (result.counters[key] / result.elapsed, key, result.counters[key])) + "\n"
         errors += '{:<7.2f} {}'.format(result.elapsed, 'seconds elapsed\n\n')
 
         if result.total_errors > 0:
-            errors += '\tStatistics errors and warnings:\n'
+            errors += _('\tStatistics errors and warnings:\n')
             for error in result.get_statistics():
                 errors += error + "\n"
         self['checkinfo'].setText(errors)
@@ -206,7 +206,7 @@ class Detailed(Screen):
         Screen.__init__(self, session)
         self.skin = getSkin("Detailed")
         self.detailed = detailed
-        self.setTitle('\tDetailed Information')
+        self.setTitle(_('\tDetailed Information'))
         self['key_red'] = Label(_('Exit'))
         self['full_ver'] = ScrollLabel(full_version)
         self['checkinfo'] = ScrollLabel(_(''))
@@ -268,6 +268,6 @@ def main(session, **kwargs):
 
 def Plugins(path, **kwargs):
     return PluginDescriptor(name=_('CheckPyCode'),
-                            description=_('Tool to check your Python code ver.' + PV),
+                            description=_('Tool to check your Python code ver.') + PV,
                             icon='checkpycode.png',
                             where=PluginDescriptor.WHERE_PLUGINMENU, fnc=main)
