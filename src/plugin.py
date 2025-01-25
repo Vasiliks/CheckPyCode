@@ -1,12 +1,20 @@
 ﻿#  -*- coding: utf-8 -*-
 #  CheckPyCode
 #  Code by Vasiliks
+#  created by Vasiliks 12.2024
+#  last edited 25.01.2025
 
 import sys
 import os
 import re
 import time
+
+Plugin_Path = os.path.dirname(os.path.realpath(__file__))
+sys.path.insert(0, os.path.join(Plugin_Path, 'modules'))
+
+import pycodestyle
 from . import _, getSkin
+from enigma import addFont
 from Components.ActionMap import ActionMap
 from Components.config import config, ConfigText, ConfigSubsection, getConfigListEntry, ConfigYesNo, ConfigInteger
 from Components.ConfigList import ConfigListScreen
@@ -14,17 +22,18 @@ from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
 from Components.FileList import FileList
 from Plugins.Plugin import PluginDescriptor
-import Plugins.Extensions.CheckPyCode.pycodestyle as pcstyle
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 
-PV = '1.0'
+PV = '1.1'
 config.plugins.checkpycode = ConfigSubsection()
 config.plugins.checkpycode.current_path = ConfigText(default="/", visible_width=70, fixed_size=False)
 config.plugins.checkpycode.remember_last_path = ConfigYesNo(default=False)
 config.plugins.checkpycode.max_line_length = ConfigInteger(default=79, limits=(70, 160))
 config.plugins.checkpycode.show_pep8 = ConfigYesNo(default=False)
 config.plugins.checkpycode.show_source = ConfigYesNo(default=False)
+
+addFont(Plugin_Path + "/skins/consolai.ttf", "CCRegular", 100, 0)
 
 
 def convert_bytes(size):
@@ -34,17 +43,12 @@ def convert_bytes(size):
         size /= 1024.0
 
 
-def file_size(file_path):
-    if os.path.isfile(file_path):
-        file_info = os.stat(file_path)
-        return convert_bytes(file_info.st_size)
-
-
 def info_py_file(file_path):
-    if os.path.exists(file_path):
-        return "{} {}".format(
-            file_size(file_path),
-            time.ctime(os.path.getmtime(file_path)))
+    if os.path.isfile(file_path) and os.path.isfile(file_path):
+        file_info = os.stat(file_path)
+        s = convert_bytes(file_info.st_size)
+        t = time.strftime('%a, %d %B %Y %H:%M:%S', time.localtime(os.path.getmtime(file_path)))
+        return "{} {}".format(s, t)
     return ""
 
 
@@ -52,7 +56,7 @@ def python_version():
     return sys.version.split('[')[0].strip()
 
 
-full_version = 'Python: {}?Pycodestyle: {}'.format(python_version(), pcstyle.__version__)
+full_version = 'Python: {}?Pycodestyle: {}'.format(python_version(), pycodestyle.__version__)
 
 
 class CheckPyCode(Screen):
@@ -73,17 +77,17 @@ class CheckPyCode(Screen):
         self['full_ver'] = ScrollLabel(full_version)
         self.check = True
         self.detailed = ""
-        self['actions'] = ActionMap(['CheckPyCodeActions'],
-                                    {'ok': self.ok,
-                                     'cancel': self.exit,
-                                     'red': self.exit,
-                                     'info': self.about,
-                                     'menu': self.menu,
-                                     'up': self.up,
-                                     'down': self.down,
-                                     'left': self.left,
-                                     'right': self.right
-                                     }, -1)
+        self['actions'] = ActionMap(['CheckPyCodeActions'], {
+            'ok': self.ok,
+            'cancel': self.exit,
+            'red': self.exit,
+            'info': self.about,
+            'menu': self.menu,
+            'up': self.up,
+            'down': self.down,
+            'left': self.left,
+            'right': self.right
+            }, -1)
 
     def menu(self):
         self.session.open(CheckPyCodeConf)
@@ -147,7 +151,7 @@ class CheckPyCode(Screen):
             self.session.open(Detailed, self.detailed)
 
     def check_pep8(self, file_path, **kwargs):
-        style_guide = pcstyle.StyleGuide(kwargs)
+        style_guide = pycodestyle.StyleGuide(kwargs)
         result = style_guide.check_files([file_path])
         errors = ""
         errors += _('\tProcessing speed:\n')
@@ -167,7 +171,8 @@ class CheckPyCode(Screen):
             detailed += config.plugins.checkpycode.max_line_length.value * "—" + "\n"
             detailed += "{}\n".format(result._fmt % {
                 'path': result.filename,
-                'row': result.line_offset + line_number, 'col': offset + 1,
+                'row': result.line_offset + line_number,
+                'col': offset + 1,
                 'code': code, 'text': text,
                 })
             detailed += "\n"
@@ -195,7 +200,7 @@ class CheckPyCode(Screen):
     def about(self):
         self.session.open(
             MessageBox,
-            _('Tool to check your Python code \nEnigma2 plugin ver.%s\n©2024 Vasiliks') %
+            _('Tool to check your Python code \nEnigma2 plugin ver.%s\n©2025 Vasiliks') %
             PV,
             MessageBox.TYPE_INFO,
             simple=True)
