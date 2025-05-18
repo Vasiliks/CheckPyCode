@@ -2,7 +2,7 @@
 #  CheckPyCode
 #  Code by Vasiliks
 #  created by Vasiliks 12.2024
-#  last edited 25.01.2025
+#  last edited 25.04.2025
 
 import sys
 import os
@@ -25,7 +25,7 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 
-PV = '1.1'
+PV = '1.2'
 config.plugins.checkpycode = ConfigSubsection()
 config.plugins.checkpycode.current_path = ConfigText(default="/", visible_width=70, fixed_size=False)
 config.plugins.checkpycode.remember_last_path = ConfigYesNo(default=False)
@@ -46,9 +46,8 @@ def convert_bytes(size):
 def info_py_file(file_path):
     if os.path.isfile(file_path) and os.path.isfile(file_path):
         file_info = os.stat(file_path)
-        s = convert_bytes(file_info.st_size)
-        t = time.strftime('%a, %d %B %Y %H:%M:%S', time.localtime(os.path.getmtime(file_path)))
-        return "{} {}".format(s, t)
+        return "{} {}".format(convert_bytes(file_info.st_size),
+            time.strftime('%a, %d %B %Y %H:%M:%S', time.localtime(os.path.getmtime(file_path))))
     return ""
 
 
