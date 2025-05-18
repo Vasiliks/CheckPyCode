@@ -25,6 +25,6 @@ setup(name = 'enigma2-plugin-extensions-checkpycode',
 		author_email='vasiliks73@gmail.com',
 		package_dir = {PLUGIN_DIR: 'src'},
 		packages=[PLUGIN_DIR],
-		package_data={PLUGIN_DIR: ['images/*.png', 'skins/*', 'locale/*/LC_MESSAGES/*.mo']},
+		package_data={PLUGIN_DIR: ['images/*.png', 'skins/*', 'locale/*/LC_MESSAGES/*.mo', 'keymap.xml', 'checkpycode.png'},
 		description = 'Tool to check your Python code for Enigma2',
 	)
