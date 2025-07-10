@@ -2,19 +2,15 @@
 #  CheckPyCode
 #  Code by Vasiliks
 #  created by Vasiliks 12.2024
-#  last edited 25.04.2025
+#  last edited 09.07.2025
 
 import sys
 import os
 import re
+import pycodestyle
 import time
 
-Plugin_Path = os.path.dirname(os.path.realpath(__file__))
-sys.path.insert(0, os.path.join(Plugin_Path, 'modules'))
-
-import pycodestyle
 from . import _, getSkin
-from enigma import addFont
 from Components.ActionMap import ActionMap
 from Components.config import config, ConfigText, ConfigSubsection, getConfigListEntry, ConfigYesNo, ConfigInteger
 from Components.ConfigList import ConfigListScreen
@@ -25,15 +21,13 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 
-PV = '1.2'
+PV = '1.3'
 config.plugins.checkpycode = ConfigSubsection()
 config.plugins.checkpycode.current_path = ConfigText(default="/", visible_width=70, fixed_size=False)
 config.plugins.checkpycode.remember_last_path = ConfigYesNo(default=False)
 config.plugins.checkpycode.max_line_length = ConfigInteger(default=79, limits=(70, 160))
 config.plugins.checkpycode.show_pep8 = ConfigYesNo(default=False)
 config.plugins.checkpycode.show_source = ConfigYesNo(default=False)
-
-addFont(Plugin_Path + "/skins/consolai.ttf", "CCRegular", 100, 0)
 
 
 def convert_bytes(size):

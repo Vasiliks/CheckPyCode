@@ -1,9 +1,18 @@
-# -*- coding: utf-8 -*-
-from Components.Language import language
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS
-from enigma import getDesktop
+#  -*- coding: utf-8 -*-
+#  CheckPyCode
+#  Code by Vasiliks
+#  created by Vasiliks 12.2024
+#  last edited 09.07.2025
+import sys
+from enigma import getDesktop, addFont
 from gettext import bindtextdomain, dgettext, gettext
 from os import environ, path
+from Components.Language import language
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS
+
+Plugin_Path = path.dirname(path.realpath(__file__))
+sys.path.insert(0, path.join(Plugin_Path, 'modules'))
+addFont(Plugin_Path + "/skins/consolai.ttf", "CCRegular", 100, 0)
 
 try:
     import xml.etree.cElementTree as ETree
