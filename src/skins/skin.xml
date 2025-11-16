@@ -25,7 +25,7 @@
     <widget name="checkinfo" position="20*f,20*f" size="1230*f,574*f" font="CCRegular;16*f" zPosition="2" transparent="0" scrollbarWidth="4*f" />
     <widget source="key_red" render="Label" position="1100*f,606*f" size="84*f,33*f" font="CCRegular;20*f" transparent="1" />
     <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/CheckPyCode/images/key_red.png" position="1060*f,606*f" size="24*f,24*f" alphatest="on" scale="on" transparent="1" />
-    <widget name="full_ver" position="20*f,606*f" size="640*f,24*f" font="CCRegular;20*f" foregroundColor="#58D68D" backgroundColor="#111111" transparent="1" split="1" dividechar="?" colposition="0" />
+    <widget name="full_ver" position="20*f,606*f" size="760*f,24*f" font="CCRegular;20*f" foregroundColor="#58D68D" backgroundColor="#111111" transparent="1" split="1" dividechar="?" colposition="0" />
   </screen>
  
   <screen name="CheckPyCodeConf" position="center,center" size="600*f,220*f" >
